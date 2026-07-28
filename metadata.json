@@ -1,0 +1,6 @@
+{
+  "name": "Dedsec",
+  "description": "Watch Dogs 2 intro experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
