@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -146,12 +146,24 @@ fun MainScannerScreen() {
                 )
                 ScannerOverlay(detectedObjects)
             } else {
-                Text(
-                    text = "AWAITING CAMERA ACCESS...",
-                    color = Color.Green,
-                    fontFamily = FontFamily.Monospace,
-                    modifier = Modifier.align(Alignment.Center)
-                )
+                Column(
+                    modifier = Modifier.align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "AWAITING CAMERA ACCESS...",
+                        color = Color.Green,
+                        fontFamily = FontFamily.Monospace,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+                    Button(
+                        onClick = { cameraPermissionState.launchPermissionRequest() },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Green, contentColor = Color.Black)
+                    ) {
+                        Text(text = "GRANT ACCESS", fontFamily = FontFamily.Monospace, fontWeight = FontWeight.Bold)
+                    }
+                }
             }
         }
     }
